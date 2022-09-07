@@ -54,16 +54,22 @@ namespace SleepData
                 {
                         hours[i] = rnd.Next(4, 13);
                     }
+
                     // M/d/yyyy,#|#|#|#|#|#|#
-                    Console.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
-                    //Console.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
-                    sw.WriteLine($"{dataDate:M/d/yyyy},{string.Join("|", hours)}");
+            
+            sw.WriteLine ($"{dataDate:M/d/yy},{string.Join("|", hours)}");
+
                     // add 1 week to date
-                    dataDate = dataDate.AddDays(7);
+                    dataDate = dataDate.AddDays(7); 
+
                 }
+
                 sw.Close();
+
             }
+
             else if (resp == "2")
+            
             {
                 // TODO: parse data file
 
@@ -75,29 +81,20 @@ namespace SleepData
 
                 DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
 
-                StreamReader sr = new StreamReader ("data.txt");
-
                 Random rnd = new Random();
 
-                 int[] hours = new int[7];
+                int[] hours = new int[7];
+
                     for (int i = 0; i < hours.Length; i++)
                     {
                         // generate random number of hours slept between 4-12 (inclusive)
                         hours[i] = rnd.Next(4, 13);
+                    
                     }
 
-                 while (dataDate < dataEndDate)
-                {
-                        hours[i] = rnd.Next(4, 13);
-                    }
+                    StreamReader sr = new StreamReader(@"data.txt");
 
-                Console.ReadLine($"{dataDate:M/d/yy},{string.Join ("|"), hours)}");
-
-                sr.ReadLine($"{dataDate:M/d/yyyy}, {String.Join ("|"), hours)}");
-               
-                  dataDate = dataDate.AddDays(7);
-
-                  Console.WriteLine(dataDate);
+                     sr.ReadLine(($"{dataDate:M/d/yyyy}, {string.Join ("|", hours)}"));
 
                 }
 
@@ -109,5 +106,5 @@ namespace SleepData
 
                 sr.Close();
             }
-        }
+        }       
     }
