@@ -85,10 +85,8 @@ namespace SleepData
                         hours[i] = rnd.Next(4, 13);
                     }
                       
-                  dataDate = DateTime.Parse($"{dataDate:M/d/yy},{string.Join("|", hours)}");
-            
-                  dataDate = DateTime.Parse($"{dataDate:M/d/yyyy},{string.Join("|", hours)}");
-
+                  dataDate = DateTime.Parse($"Week {today:dd} of {today:MMMM}, {today:yy}");
+    
                     string line = sr.ReadLine();
 
                 }
