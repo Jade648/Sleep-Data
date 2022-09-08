@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.IO;
 
 namespace SleepData
@@ -30,6 +31,7 @@ namespace SleepData
                 DateTime dataEndDate = today.AddDays(-(int)today.DayOfWeek);
                 // subtract # of weeks from endDate to get startDate
                 DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
+
                 Console.WriteLine(dataDate);
 
                 Random rnd = new Random();
@@ -49,26 +51,13 @@ namespace SleepData
                     dataDate = dataDate.AddDays(7);  
 
  StreamWriter sw = new StreamWriter("data.txt");
-                // loop for the desired # of weeks
-                while (dataDate < dataEndDate)
-                {
-                        hours[i] = rnd.Next(4, 13);
-                    }
-
-                    // M/d/yyyy,#|#|#|#|#|#|#
-            
+                   
             sw.WriteLine ($"{dataDate:M/d/yy},{string.Join("|", hours)}");
-
-                    // add 1 week to date
-                    dataDate = dataDate.AddDays(7); 
-
                 }
+                
+              sw.Close();
 
-                sw.Close();
-
-            }
-
-            else if (resp == "2")
+            } else if (resp == "2")
             
             {
                 // TODO: parse data file
@@ -81,22 +70,18 @@ namespace SleepData
 
                 DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
 
-                Random rnd = new Random();
+                    Random rnd = new Random();
 
-                int[] hours = new int[7];
-
+                    int[] hours = new int[7];
                     for (int i = 0; i < hours.Length; i++)
                     {
                         // generate random number of hours slept between 4-12 (inclusive)
                         hours[i] = rnd.Next(4, 13);
-                    
                     }
 
                     StreamReader sr = new StreamReader(@"data.txt");
 
-                     sr.ReadLine(($"{dataDate:M/d/yyyy}, {string.Join ("|", hours)}"));
-
-                }
+                string v = ($"{dataDate:M/d/yyyy},{string.Join("|", hours)}");
 
                 while (!sr.EndOfStream){
 
@@ -108,3 +93,5 @@ namespace SleepData
             }
         }       
     }
+}
+
