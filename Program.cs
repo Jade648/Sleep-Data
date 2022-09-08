@@ -63,34 +63,38 @@ namespace SleepData
             {
                 // TODO: parse data file
 
-                int weeks = int.Parse(Console.ReadLine());
-
-                DateTime today = DateTime.Now;
-
-                DateTime dataEndDate = today.AddDays(-(int)today.DayOfWeek);
-
-                DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
-
-                    Random rnd = new Random();
-
-                    int[] hours = new int[7];
-                    for (int i = 0; i < hours.Length; i++)
-                    {
-                        // generate random number of hours slept between 4-12 (inclusive)
-                        hours[i] = rnd.Next(4, 13);
-                    }
-
                     StreamReader sr = new StreamReader(@"data.txt");
 
-                string v = ($"{dataDate:M/d/yyyy},{string.Join("|", hours)}");
-
                 while (!sr.EndOfStream){
+                    
+                 int weeks = int.Parse(Console.ReadLine());
+
+  
+                  DateTime today = DateTime.Now;
+
+                  DateTime dataEndDate = today.AddDays(-(int)today.DayOfWeek);
+                
+                  DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
+
+                  Random rnd = new Random();
+ 
+                int[] hours = new int[7];
+
+                    for (int i = 0; i < hours.Length; i++)
+                    {
+                        hours[i] = rnd.Next(4, 13);
+                    }
+                      
+                  dataDate = DateTime.Parse($"{dataDate:M/d/yy},{string.Join("|", hours)}");
+            
+                  dataDate = DateTime.Parse($"{dataDate:M/d/yyyy},{string.Join("|", hours)}");
 
                     string line = sr.ReadLine();
 
                 }
 
                 sr.Close();
+
             }
         }       
     }
