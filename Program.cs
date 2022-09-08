@@ -85,7 +85,7 @@ namespace SleepData
                         hours[i] = rnd.Next(4, 13);
                     }
                       
-                  dataDate = DateTime.Parse($"Week {today:dd} of {today:MMMM}, {today:yy}");
+                  dataDate = DateTime.Parse($"Week {today:dd} of {today:MMMM}, {today:yyyy}");
     
                     string line = sr.ReadLine();
 
