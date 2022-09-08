@@ -31,23 +31,23 @@ namespace SleepData
                 DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
 
                 Console.WriteLine(dataDate);
-                    
+
+                Random rnd = new Random();
+ 
+                int[] hours = new int[7];
+                    for (int i = 0; i < hours.Length; i++)
+                    {
+                        hours[i] = rnd.Next(4, 13);
+                    }
+                      
                     Console.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
                    
                     dataDate = dataDate.AddDays(7);  
 
                 StreamWriter sw = new StreamWriter("data.txt");
 
-                  Random rnd = new Random();
- 
                 while (dataDate < dataEndDate){
 
-                int[] hours = new int[7];
-                    for (int i = 0; i < hours.Length; i++)
-                    {
-                        hours[i] = rnd.Next(4, 13);
-                    }
-                    
                     Console.WriteLine($"{dataDate:M/d/yy},{string.Join("|", hours)}");
                     
                     sw.WriteLine($"{dataDate:M/d/yyyy},{string.Join("|", hours)}");
